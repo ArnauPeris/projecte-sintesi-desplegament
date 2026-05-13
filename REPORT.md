@@ -30,108 +30,7 @@ Incloeu:
 ├── LICENSE
 ├── node_modules
 │   ├── acorn
-│   ├── acorn-jsx
-│   ├── ajv
-│   ├── @babel
-│   ├── balanced-match
-│   ├── baseline-browser-mapping
-│   ├── brace-expansion
-│   ├── browserslist
-│   ├── caniuse-lite
-│   ├── convert-source-map
-│   ├── cross-spawn
-│   ├── csstype
-│   ├── debug
-│   ├── deep-is
-│   ├── detect-libc
-│   ├── electron-to-chromium
-│   ├── @emnapi
-│   ├── escalade
-│   ├── escape-string-regexp
-│   ├── @eslint
-│   ├── eslint
-│   ├── @eslint-community
-│   ├── eslint-plugin-react-hooks
-│   ├── eslint-plugin-react-refresh
-│   ├── eslint-scope
-│   ├── eslint-visitor-keys
-│   ├── espree
-│   ├── esquery
-│   ├── esrecurse
-│   ├── estraverse
-│   ├── esutils
-│   ├── fast-deep-equal
-│   ├── fast-json-stable-stringify
-│   ├── fast-levenshtein
-│   ├── fdir
-│   ├── file-entry-cache
-│   ├── find-up
-│   ├── flat-cache
-│   ├── flatted
-│   ├── gensync
-│   ├── globals
-│   ├── glob-parent
-│   ├── hermes-estree
-│   ├── hermes-parser
-│   ├── @humanfs
-│   ├── @humanwhocodes
-│   ├── ignore
-│   ├── imurmurhash
-│   ├── isexe
-│   ├── is-extglob
-│   ├── is-glob
-│   ├── @jridgewell
-│   ├── jsesc
-│   ├── json5
-│   ├── json-buffer
-│   ├── json-schema-traverse
-│   ├── json-stable-stringify-without-jsonify
-│   ├── js-tokens
-│   ├── keyv
-│   ├── levn
-│   ├── lightningcss
-│   ├── lightningcss-linux-x64-gnu
-│   ├── locate-path
-│   ├── lru-cache
-│   ├── minimatch
-│   ├── ms
-│   ├── nanoid
-│   ├── @napi-rs
-│   ├── natural-compare
-│   ├── node-releases
-│   ├── optionator
-│   ├── @oxc-project
-│   ├── path-exists
-│   ├── path-key
-│   ├── picocolors
-│   ├── picomatch
-│   ├── p-limit
-│   ├── p-locate
-│   ├── postcss
-│   ├── prelude-ls
-│   ├── punycode
-│   ├── react
-│   ├── react-dom
-│   ├── @rolldown
-│   ├── rolldown
-│   ├── scheduler
-│   ├── semver
-│   ├── shebang-command
-│   ├── shebang-regex
-│   ├── source-map-js
-│   ├── tinyglobby
-│   ├── @tybys
-│   ├── type-check
-│   ├── @types
-│   ├── update-browserslist-db
-│   ├── uri-js
-│   ├── vite
-│   ├── @vitejs
-│   ├── which
-│   ├── word-wrap
-│   ├── yallist
-│   ├── yocto-queue
-│   ├── zod
+│   ├── ...
 │   └── zod-validation-error
 ├── package.json
 ├── package-lock.json
@@ -182,10 +81,24 @@ Què faltava perquè aquest projecte es pogués considerar “professional”?
 Expliqueu:
 
 - Model de branques utilitzat
+
+
+
 - Convencions de noms
+
+
 - Estratègia de merge utilitzada
+
+
+
 - Ús (o no) de rebase
+
+
+
 - Incloeu exemples reals de commits rellevants (amb missatge i explicació del canvi).
+
+
+
 
 ## 4. Conflicte 1 – Mateixa línia
 
@@ -233,6 +146,8 @@ Què heu après d’aquest conflicte?
 
 Descriviu els serveis definits a docker-compose.yml.
 
+
+
 ### 6.2 Variables d’entorn
 
 Expliqueu quines variables són necessàries i per què no es versiona el .env.
@@ -243,7 +158,13 @@ Expliqueu l’ús de volums.
 
 ###  6.4 Problemes trobats
 
-Incloeu errors reals i com s’han resolt.
+Al treballar Docker amb maquina virtual fins ara i treballar per primer cop en el meu ubuntu personal, he trobat el problema:
+
+```permission denied while trying to connect to the docker API socket```
+
+Per no tenir permisos dins del grup Docker, en Bash. I el següent problema també: tampoc existeix el grup Docker. 
+
+He creat el grup amb ```sudo groupadd docker``` i m'he donat permisos amb ```sudo usermod -aG docker agonzalezperis```.
 
 ## 7. Prova de desplegament des de zero
 
