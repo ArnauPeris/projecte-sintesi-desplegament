@@ -121,10 +121,10 @@ No s’ha utilitzat rebase per mantenir l’historial de commits i merges intact
 
 ### 4.1 Com s’ha provocat
 
-Dos developers que están teletraballant i no s'están comunicant entre ells volen aplicar una traducció del anglès al català. Un utilitza la branca fix i l'altre crea una branca nova fix/traduccio.
+Dos developers que están teletraballant i no s'están comunicant entre ells volen aplicar una traducció del anglès al català. Un utilitza la branca fix i l'altre crea una branca nova fix-traduccio.
 
 ```
-git checkout -b 
+git checkout -b fix-traduccio
 ```
 
 
