@@ -82,21 +82,38 @@ Expliqueu:
 
 - Model de branques utilitzat
 
-
+```
+  dockeritzacio/docker-setup
+  documentacio/report
+  feature
+  fix
+* main
+  neteja-inicial
+```
 
 - Convencions de noms
 
+`neteja-inicial` branca que només s'utilitza al inici del projecte per fer preparacions
+
+`documentacio/...` -> branca que només s'utilitza per desenvolupar la documentacio
+
+`dockeritzacio/...` -> branca dedicada només als canvis de docker
+
+`fix/...` -> branca dedicada a fer proves per arreglar problemes
+
+`feature/...` -> branca dedicada a desenvolupar i testejar noves funcions
 
 - Estratègia de merge utilitzada
 
+Cada canvi es desenvolupa en una branca independent abans de fusionar-se a la main mitjançant merge commits.
 
+S’ha utilitzat una estratègia basada en merge per mantenir l’historial complet de branques i conflictes i ajudar al procés de documentació.
 
 - Ús (o no) de rebase
 
-
+No s’ha utilitzat rebase per mantenir l’historial de commits i merges intacte.
 
 - Incloeu exemples reals de commits rellevants (amb missatge i explicació del canvi).
-
 
 
 
@@ -104,7 +121,13 @@ Expliqueu:
 
 ### 4.1 Com s’ha provocat
 
-Expliqueu exactament quins canvis ha fet cada membre.
+Dos developers que están teletraballant i no s'están comunicant entre ells volen aplicar una traducció del anglès al català. Un utilitza la branca fix i l'altre crea una branca nova fix/traduccio.
+
+```
+git checkout -b 
+```
+
+
 
 ### 4.2 Missatge d’error generat
 
@@ -145,8 +168,6 @@ Què heu après d’aquest conflicte?
 ### 6.1 Arquitectura final
 
 Descriviu els serveis definits a docker-compose.yml.
-
-
 
 ### 6.2 Variables d’entorn
 
