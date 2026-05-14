@@ -117,6 +117,8 @@ No s’ha utilitzat rebase per mantenir l’historial de commits i merges intact
 
 ![Commits llistats](img/im1.png)
 
+![Commits llistats](img/im9.png)
+
 
 ## 4. Conflicte 1 – Mateixa línia
 
@@ -171,13 +173,37 @@ Si els teus companys saben el que estàs fent tú poden donar-te consells. Son t
 
 ### 5.1 Descripció del conflicte
 
+Tenim la versió 19.2.6 de React en el package.json. Un desenvolupador creu que és més estable la versió 19.0.0 i vol fer el downgrade. Crea una nova branca `feat/downgrade-react` per fer-ho.
 
+Un altre desenvolupador creu que posats a fer downgrade millor fer servir la versió 18 amb la que és més familiar. Però no se'n adona de la nova branca i fa servir la branca `feature`.
 
 ### 5.2 Error generat
 
+Quan el primer torna a la primera branca i fa merge no hi ha problema. Però el segon fa merge i:
+
+![Merge genera conflicte](img/im7.png)
+
+Git no pot decidir quina versió conservar. 
+
+El conflicte en el codi:
+
+![Conflicte de canvis](img/im8.png)
+
 ### 5.3 Resolució aplicada
 
+Com ja estaven fent servir la versio 19.2.6 decideixen acceptar el "current change" i quedar-se amb la versió 19.0.0 per minimitzar els canvis.
+
+Després `git add package.json` i `git commit` i fan `docker compose up --build` per comprovar que tot funciona. 
+
 ### 5.4 Diferències respecte al conflicte anterior
+
+El primer conflicte afectava codi funcional de l’aplicació i dues branques modificaven exactament la mateixa línia.
+
+En canvi, aquest segon conflicte afecta fitxers de configuració i dependències, en aquest cas el `package.json`.
+
+Al primer conflicte es podien combinar parts dels dos canvis pero en el segon conflicte només es podia conservar una versió.
+
+Aquest tipus de conflictes poden provocar incompatibilitats o errors de build si no es resolen correctament i per tant són més sensibles.
 
 ## 6. Dockerització
 
@@ -237,7 +263,7 @@ Per no tenir permisos dins del grup Docker, en Bash. I el següent problema tamb
 
 He creat el grup amb ```sudo groupadd docker``` i m'he donat permisos amb ```sudo usermod -aG docker agonzalezperis```.
 
-També he trobat que VITE no funcio amb Node.js versió 18 i ha sigut obligatori modificar-ho a la versió 20.
+També he trobat que aquesta versió de VITE no funciona amb Node.js versió 18 i ha sigut obligatori modificar-ho a la versió 20.
 
 ## 7. Prova de desplegament des de zero
 
@@ -298,19 +324,34 @@ D'aquesta manera utilitzem el port 80 del contenidor i el port 8080 del host i n
 
 ## 8. Repartiment de tasques
 
-Descriviu què ha fet cada membre de l’equip.
+Arnau González Peris ho ha fet tot. 
+
+Petita menció a Adrià pero recomanar descarregar un projecte de react d'internet.
 
 ## 9. Temps invertit
 
 Indiqueu aproximadament:
-- Temps dedicat a Git
-- Temps dedicat a Docker
-- Temps dedicat a documentació
+- Temps dedicat a Git: 2-3 hores
+
+- Temps dedicat a Docker: 1 hora
+
+- Temps dedicat a documentació: 5-6 hores
 
 ## 10. Reflexió final
 
 Responeu breument:
 
 - Quina ha estat la part més complexa?
+
+Dues parts:
+
+1. Inventar-me moltes coses perquè tant el projecte base no és meu, com també és MOLT petit i limitants i també he hagut d'inventar moltes coses per ser 1 persona en comptes de dues
+2. Portar un bon ritme de commits quan només ets 1 persona canviant constantment de branques ha sigut confús.
+
 - Què faríeu diferent en un projecte real?
+
+La dockerització sería molt més complexa per treballar amb una aplicació real i a més caldria tenir una estructura de branques i commits molt millor, pensada per a més persones.
+
 - Heu entès realment com funcionen els conflictes i Docker?
+
+Sí.

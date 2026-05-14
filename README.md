@@ -5,89 +5,148 @@
 [![Level](https://img.shields.io/badge/level-2n%20DAW-orange)]()
 [![Optional](https://img.shields.io/badge/CI/CD-opcional-lightgrey)]()
 
-Repositori oficial del Projecte de Síntesi del mòdul de Desplegament d’Aplicacions Web.
 
-Aquest projecte simula un escenari professional real:
+Projecte acadèmic del mòdul de Desplegament d’Aplicacions Web (DAW) centrat en convertir una aplicació React en un projecte més proper a un entorn professional.
 
-> Rebre una aplicació funcional i convertir-la en un projecte professional, versionat correctament i desplegable.
+L’objectiu principal no era crear una aplicació complexa, sinó treballar aspectes reals de:
 
----
+- Git i treball amb branques
+- Simulació d’un workflow col·laboratiu
+- Resolució de conflictes
+- Dockerització
+- Reproduïbilitat del projecte
+- Documentació
 
-## Objectius
+## Autor
 
-L’alumnat haurà de demostrar que sap:
+**Arnau González Peris**
 
-- Aplicar un workflow real amb Git (branques, merges, etiquetes).
-- Provocar i resoldre conflictes de manera argumentada.
-- Dockeritzar una aplicació web.
-- Gestionar correctament configuració i variables d’entorn.
-- Documentar decisions tècniques.
-- Garantir una execució reproduïble.
+Maig 2026
 
-Ampliació opcional:
+## Requisits previs
 
-- Integració Contínua (CI) amb GitHub Actions.
-- Desplegament al núvol (CD bàsic).
+Cal tenir instal·lat:
 
----
+- Git
+- Docker
+- Docker Compose
 
-## Roadmap del projecte
 
-### Fase 1 – Professionalització del repositori
-- Estructura correcta.
-- `.gitignore` adequat.
-- Workflow amb branques.
-- Resolució de conflictes documentada.
+## Instal·lació i execució
 
-### Fase 2 – Dockerització
-- Dockerfile funcional.
-- docker-compose operatiu.
-- Variables d’entorn separades del codi.
-- Execució amb `docker compose up --build`.
+1. Clonar el repositori
 
-### Fase 3 – Documentació
-- README clar.
-- REPORT reflexiu.
-- Evidències reals.
+`git clone https://github.com/ArnauPeris/projecte-sintesi-desplegament.git`
 
-### Fase 4 (Opcional) – CI/CD
-- Workflow amb GitHub Actions.
-- Validació automàtica del build.
-- Desplegament al núvol.
+2. Entrar al projecte
 
----
+`cd projecte-sintesi-desplegament`
 
-## Estructura del repositori
+3. Construir i iniciar Docker
 
-- [`enunciat-projecte-sintesi.md`](./enunciat-projecte-sintesi.md) → Enunciat oficial del projecte.
-- [`REPORT.md`](./REPORT.md) → Estructura bàsica del document REPORT.
-- [`annex-gestio-secrets.md`](./annex-gestio-secrets.md) → Gestió de secrets en entorns professionals.
+`docker compose up --build`
 
----
-
-## Modalitat
-
-- Treball en parelles.
-- Temps orientatiu: 12 hores 
-- Lliurament: 
-  - Repositori Git.
-  - Defensa Oral
-  - Documentació
+4. Obrir al navegador
   
+`http://localhost:8080`
 
----
 
-## Filosofia
 
-Aquest projecte no avalua si l’aplicació funciona.
 
-Avalua si el projecte és:
+## Tecnologies utilitzades
 
-- Col·laboratiu.
-- Reproduïble.
-- Configurat correctament.
-- Documentat.
-- Professional.
+- React
+- Vite
+- Docker
+- Docker Compose
+- Nginx
+- Git + GitHub
+
+## Descripció del projecte
+
+El projecte parteix d’una plantilla React + Vite molt simple.
+
+L’aplicació mostra:
+
+- Una pantalla inicial amb logos de React i Vite
+- Informació bàsica de documentació
+- Un botó contador interactiu
+
+No existeix backend ni base de dades perquè el focus del projecte és el desplegament i no la lògica de negoci.
+
+
+
+## Workflow Git utilitzat
+
+S’ha simulat un entorn col·laboratiu amb diferents tipus de branques:
+
+| Tipus         | Exemple                        | Objectiu             |
+| ------------- | ------------------------------ | -------------------- |
+| main          | `main`                         | branca estable       |
+| feature       | `feat/downgrade-react`         | noves funcionalitats |
+| fix           | `fix/traduccio-catala`         | correccions          |
+| dockeritzacio | `dockeritzacio/docker-setup`   | configuració Docker  |
+| documentacio  | `documentacio/report`          | documentació         |
+
+
+
+
+## Estratègia de merge
+
+S’ha utilitzat `git merge` en lloc de rebase per conservar:
+
+- historial complet
+- commits originals
+- evidència dels conflictes
+- merges explícits
+
+Per tal de facilitar la documentació i seguiment dels canvis.
+
+
+
+## Dockerització
+
+L’aplicació s’executa amb Docker utilitzant:
+
+- Node.js per generar el build
+- Nginx per servir el frontend  
+
+### Docker compose
+
+El projecte utilitza un únic servei: `react-app`
+
+### Variables d’entorn
+
+- APP_NAME=projecte-sintesi-react
+
+- APP_ENV=production
+
+### Persistència
+
+S’ha afegit persistència per als logs de Nginx:
+
+```
+volumes:
+  - nginx_logs:/var/log/nginx
+```
+Això permet mantenir els logs encara que el contenidor es destrueixi.
+
+
+
+## Aprenentatges
+
+Aquest projecte ha servit per entendre millor:
+
+- com treballa Git internament
+- com apareixen conflictes reals
+- la importància de comunicar-se en equip
+- el funcionament bàsic de Docker
+- la diferència entre “funciona localment” i “és desplegable”
+
+
+
+## Filosofia del projecte
+
 
 > **"It works on my machine"**  
 > és desenvolupament.
@@ -96,11 +155,3 @@ Avalua si el projecte és:
 > és enginyeria.
 
 ---
-
-## Nota sobre credencials
-
-Les credencials utilitzades en aquest projecte són d’entorn local i no tenen valor real.
-
-En entorns professionals:
-- Els secrets no es versionen.
-- Es gestionen mitjançant variables d’entorn o sistemes de gestió de secrets.
