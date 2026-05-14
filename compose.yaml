@@ -3,3 +3,11 @@ services:
     build: .
     ports:
       - "8080:80"
+    environment:
+      - APP_ENV=production
+      - APP_NAME=projecte-sintesi-react
+    volumes:
+      - nginx_logs:/var/log/nginx
+
+volumes:
+  nginx_logs:

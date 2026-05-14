@@ -115,6 +115,7 @@ No s’ha utilitzat rebase per mantenir l’historial de commits i merges intact
 
 - Incloeu exemples reals de commits rellevants (amb missatge i explicació del canvi).
 
+![Commits llistats](img/im1.png)
 
 
 ## 4. Conflicte 1 – Mateixa línia
@@ -127,31 +128,44 @@ Dos developers que están teletraballant i no s'están comunicant entre ells vol
 git checkout -b fix-traduccio
 ```
 
+Tradueixen i cadascun fa en la seva branca:
+
+```
+git commit -am "Traduccio v1.0"
+```
+
+El que primer ha acabat fa `git merge fix-traduccio` a la branca main i tot funciona pero el segon arriba i fa `git merge fix` i li dona error.
 
 
 ### 4.2 Missatge d’error generat
 
-Incloeu la sortida real de Git.
+![Conflicte git merge](img/im2.png)
 
 ### 4.3 Marcadors de conflicte
 
-Mostreu el fragment amb:
-```
-<<<<<<< HEAD
-=======
->>>>>>> branch
-```
+![Marcadors current/incoming](img/im3.png)
+
 ### 4.4 Resolució aplicada
 
-Expliqueu:
-
 - Quina decisió s’ha pres
+
+S'han posat en conctacte i han decidit comprovar el conflicte i decidir quina traduccio es millor. Al primer conflicte han escollit el "Current change" i al segon conflicte el "incoming change" i han acabat els dos contents.
+
 - Per què s’ha escollit aquesta opció
+
+Descartar una de les dues traduccions era la manera més ràpida i divertida de solucionar el conflicte.
+
 - Com s’ha validat que funciona
+
+S'ha fet `git commit -am "Conflicte de traduccio resolt"` a la main, no ha donat error. S'ha fet `git push` i no ha donat error. S'ha fet `npm run dev` per obrir l'app a Localhost i tot està bé.
 
 ### 4.5 Reflexió
 
 Què heu après d’aquest conflicte?
+
+A l'hora de treballar en equip, encara que només sigueu dos, el més important és la comunicació. Saber qué està fent el teu o els teus companys evita problemes de solapament o contradicció en les tasques que feu i facilita un repart just de tasques. 
+
+Si els teus companys saben el que estàs fent tú poden donar-te consells. Son tot avantatges.
 
 ## 5. Conflicte 2 – Dependències o estructura
 
@@ -167,15 +181,48 @@ Què heu après d’aquest conflicte?
 
 ### 6.1 Arquitectura final
 
-Descriviu els serveis definits a docker-compose.yml.
+El Dockerfile que venía de plantilla amb el projecte del repositori ha sigut modificat per varies raons:
+
+- Utilitzaba la imatge de Ubuntu per instalar nginx manualment i aquesta és una manera ineficient de fer-ho.
+- S'ha modificat els "COPY" i "RUN" i canviat l'ordre per millor funcionament.
+
+Utilitzem Docker Compose amb un servei principal:
+
+**React-app**
+
+1. Construeix l’aplicació React amb un Dockerfile de dos etapes: node i nginx.
+2. Genera el build de producció amb Vite
+3. Servidor Nginx per servir el build
+
+El servei exposa el port 80 del contenidor i el port 8080 de la màquina host.
+
+També s’han configurat variables d’entorn i volum persistent amb logs de Nginx.
 
 ### 6.2 Variables d’entorn
 
-Expliqueu quines variables són necessàries i per què no es versiona el .env.
+El fitxer `.env` no es versiona per evitar deixar informació sensible accesible en el repositori Git.
+
+S'han configurat dues variables d'entorn senzilles:
+
+- APP_NAME=projecte-sintesi-react
+
+Simplement defineix un nom per identificar la app dins el contenidor.
+
+- APP_ENV=production
+
+Defineix el mode d'execució de la app a mode "producció" que canvia algunes configuracions com per exemple a nivell de paquets que carrega o evita carregar o afegir pasos de confirmació a les migracions.
+
 
 ### 6.3 Persistència (si s'escau)
 
-Expliqueu l’ús de volums.
+```
+volumes:
+  - nginx_logs:/var/log/nginx
+```
+
+`nginx_logs`  ens permet donar persistència als logs del servidor Nginx.
+
+Això pot ser molt útil per tasques de debugging.
 
 ###  6.4 Problemes trobats
 
@@ -193,6 +240,18 @@ He creat el grup amb ```sudo groupadd docker``` i m'he donat permisos amb ```sud
 - Clonar repositori
 - Executar comanda
 - Accedir a l’aplicació  
+
+### Clonar repositori
+
+Has d'obrir la consola de comandes d'Ubuntu i realitzar aquesta comanda per clonar el repositori:
+
+`git clone https://github.com/ArnauPeris/projecte-sintesi-desplegament.git`
+
+I per ubicar-te a la carpeta del projecte:
+
+`cd projecte-sintesi-desplegament`
+
+
 
 Indiqueu també:
 - Ports utilitzats
