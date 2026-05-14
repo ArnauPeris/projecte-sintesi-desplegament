@@ -171,6 +171,8 @@ Si els teus companys saben el que estàs fent tú poden donar-te consells. Son t
 
 ### 5.1 Descripció del conflicte
 
+
+
 ### 5.2 Error generat
 
 ### 5.3 Resolució aplicada
@@ -185,6 +187,7 @@ El Dockerfile que venía de plantilla amb el projecte del repositori ha sigut mo
 
 - Utilitzaba la imatge de Ubuntu per instalar nginx manualment i aquesta és una manera ineficient de fer-ho.
 - S'ha modificat els "COPY" i "RUN" i canviat l'ordre per millor funcionament.
+- Utilitzaba Node versio 18.
 
 Utilitzem Docker Compose amb un servei principal:
 
@@ -234,14 +237,38 @@ Per no tenir permisos dins del grup Docker, en Bash. I el següent problema tamb
 
 He creat el grup amb ```sudo groupadd docker``` i m'he donat permisos amb ```sudo usermod -aG docker agonzalezperis```.
 
+També he trobat que VITE no funcio amb Node.js versió 18 i ha sigut obligatori modificar-ho a la versió 20.
+
 ## 7. Prova de desplegament des de zero
 
-  Expliqueu els passos exactes que hauria de seguir una persona externa:
-- Clonar repositori
-- Executar comanda
-- Accedir a l’aplicació  
+**Requisits previs**
 
-### Clonar repositori
+Necessites Git i Docker. Comandes per comprovar si ja els tens:
+
+```
+git --version
+docker --version
+docker compose version
+```
+Si no obtens com a resposta una versió, vol dir que no el tens. Per instal·lar:
+
+- Sempre es recomanable començar amb:
+
+`sudo apt update && sudo apt upgrade -y`
+
+- Si et faltava Git:
+
+`sudo apt install git -y`
+
+- Si et faltava Docker:
+
+`sudo apt install docker.io -y`
+
+- Si et faltava Docker Compose:
+
+`sudo apt install docker-compose-plugin -y`
+
+**Clonar repositori**
 
 Has d'obrir la consola de comandes d'Ubuntu i realitzar aquesta comanda per clonar el repositori:
 
@@ -251,11 +278,23 @@ I per ubicar-te a la carpeta del projecte:
 
 `cd projecte-sintesi-desplegament`
 
+**Crear contenidor i obrir la app**
 
+Llavors per crear el contenidor executes:
 
-Indiqueu també:
-- Ports utilitzats
-- Credencials de prova (si n’hi ha)
+`docker compose up --build`
+
+Un cop acaba de construir el contenidor vas al teu navegador web de confiança i busques:
+
+`http://localhost:8080`
+
+![Clonar el repositori](img/im4.png)
+
+![Construir el contenidor](img/im5.png)
+
+![Comprovacio que ha funcionat](img/im6.png)
+
+D'aquesta manera utilitzem el port 80 del contenidor i el port 8080 del host i no requerim de credencials per accedir.
 
 ## 8. Repartiment de tasques
 
