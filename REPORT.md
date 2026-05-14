@@ -2,25 +2,22 @@
 
 ## 1. Dades generals
 
-Nom del projecte: projecte-sintesi-desplegament
+**Nom del projecte:** projecte-sintesi-desplegament
 
-Integrants: Arnau Gonzalez
+**Integrants:** Arnau Gonzalez
 
-Tecnologia principal (Laravel / React / Fullstack): React
+**Tecnologia principal (Laravel / React / Fullstack):** React
 
-Enllaç al repositori: https://github.com/ArnauPeris/projecte-sintesi-desplegament
+**Enllaç al repositori:** https://github.com/ArnauPeris/projecte-sintesi-desplegament
 
-Data d’entrega: maig 2026
+**Data d’entrega:** maig 2026
 
 ## 2. Estat inicial del projecte
 
-Descriviu la situació del projecte abans de començar el treball de desplegament.
-
 El projecte "plantilla" utilitzat s'ha clonat del repositori:  https://github.com/mattburrell/vite-react-docker
 
-Incloeu:
 
-- Estructura inicial del repositori
+- **Estructura inicial del repositori**
 
 ```
 ├── compose.yaml
@@ -54,33 +51,29 @@ Incloeu:
 ├── vite.config.js
 └── vite.config.ts
 ```
-- Problemes detectats (si n’hi havia)
+- **Problemes detectats (si n’hi havia)**
   
   No tenia .gitignore ni .dockerignore, mix de JavaScript i TypeScript.
 
-- Existència o no de .gitignore
+- **Existència o no de .gitignore**
 
   No existía.
 
-- Existència o no de Docker
+- **Existència o no de Docker**
 
   Tenía un dockerfile.
 
-- Problemes de configuració o dependències
+- **Problemes de configuració o dependències**
 
   He hagut de fer ```npm create vite@latest``` .
 
-Reflexió breu:
-
-Què faltava perquè aquest projecte es pogués considerar “professional”?
+- **Què faltava perquè aquest projecte es pogués considerar “professional”?**
 
   Dockeritzar, treball col·laboratiu, .gitignore, .dockerignore, decidir-se per JavaScript o TypeScript.
 
 ## 3. Workflow Git aplicat
 
-Expliqueu:
-
-- Model de branques utilitzat
+- **Model de branques utilitzat**
 
 ```
   dockeritzacio/docker-setup
@@ -91,11 +84,11 @@ Expliqueu:
   neteja-inicial
 ```
 
-- Convencions de noms
+- **Convencions de noms**
 
-`neteja-inicial` branca que només s'utilitza al inici del projecte per fer preparacions
+`neteja-inicial` -> branca que només s'utilitza al inici del projecte per fer preparacions
 
-`documentacio/...` -> branca que només s'utilitza per desenvolupar la documentacio
+`documentacio/...` -> branca que només s'utilitza per desenvolupar la documentació
 
 `dockeritzacio/...` -> branca dedicada només als canvis de docker
 
@@ -103,17 +96,17 @@ Expliqueu:
 
 `feature/...` -> branca dedicada a desenvolupar i testejar noves funcions
 
-- Estratègia de merge utilitzada
+- **Estratègia de merge utilitzada**
 
 Cada canvi es desenvolupa en una branca independent abans de fusionar-se a la main mitjançant merge commits.
 
 S’ha utilitzat una estratègia basada en merge per mantenir l’historial complet de branques i conflictes i ajudar al procés de documentació.
 
-- Ús (o no) de rebase
+- **Ús (o no) de rebase**
 
 No s’ha utilitzat rebase per mantenir l’historial de commits i merges intacte.
 
-- Incloeu exemples reals de commits rellevants (amb missatge i explicació del canvi).
+- **Incloeu exemples reals de commits rellevants (amb missatge i explicació del canvi).**
 
 ![Commits llistats](img/im1.png)
 
@@ -149,21 +142,21 @@ El que primer ha acabat fa `git merge fix-traduccio` a la branca main i tot func
 
 ### 4.4 Resolució aplicada
 
-- Quina decisió s’ha pres
+- **Quina decisió s’ha pres**
 
-S'han posat en conctacte i han decidit comprovar el conflicte i decidir quina traduccio es millor. Al primer conflicte han escollit el "Current change" i al segon conflicte el "incoming change" i han acabat els dos contents.
+S'han posat en contacte i han decidit comprovar el conflicte i decidir quina traducció és millor. Al primer conflicte han escollit el "Current change" i al segon conflicte el "incoming change" i han acabat els dos contents.
 
-- Per què s’ha escollit aquesta opció
+- **Per què s’ha escollit aquesta opció**
 
 Descartar una de les dues traduccions era la manera més ràpida i divertida de solucionar el conflicte.
 
-- Com s’ha validat que funciona
+- **Com s’ha validat que funciona**
 
 S'ha fet `git commit -am "Conflicte de traduccio resolt"` a la main, no ha donat error. S'ha fet `git push` i no ha donat error. S'ha fet `npm run dev` per obrir l'app a Localhost i tot està bé.
 
 ### 4.5 Reflexió
 
-Què heu après d’aquest conflicte?
+**Què heu après d’aquest conflicte?**
 
 A l'hora de treballar en equip, encara que només sigueu dos, el més important és la comunicació. Saber qué està fent el teu o els teus companys evita problemes de solapament o contradicció en les tasques que feu i facilita un repart just de tasques. 
 
@@ -326,7 +319,7 @@ D'aquesta manera utilitzem el port 80 del contenidor i el port 8080 del host i n
 
 Arnau González Peris ho ha fet tot. 
 
-Petita menció a Adrià pero recomanar descarregar un projecte de react d'internet.
+Petita menció a Adrià pero recomanar descarregar un projecte de React d'internet.
 
 ## 9. Temps invertit
 
@@ -339,19 +332,17 @@ Indiqueu aproximadament:
 
 ## 10. Reflexió final
 
-Responeu breument:
-
-- Quina ha estat la part més complexa?
+- **Quina ha estat la part més complexa?**
 
 Dues parts:
 
-1. Inventar-me moltes coses perquè tant el projecte base no és meu, com també és MOLT petit i limitants i també he hagut d'inventar moltes coses per ser 1 persona en comptes de dues
+1. Inventar-me moltes coses perquè el projecte base no és meu i també és MOLT petit i limitant. També he hagut d'inventar moltes coses per ser 1 persona en comptes de dues.
 2. Portar un bon ritme de commits quan només ets 1 persona canviant constantment de branques ha sigut confús.
 
-- Què faríeu diferent en un projecte real?
+- **Què faríeu diferent en un projecte real?**
 
 La dockerització sería molt més complexa per treballar amb una aplicació real i a més caldria tenir una estructura de branques i commits molt millor, pensada per a més persones.
 
-- Heu entès realment com funcionen els conflictes i Docker?
+- **Heu entès realment com funcionen els conflictes i Docker?**
 
 Sí.
